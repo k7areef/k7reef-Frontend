@@ -16,7 +16,7 @@ const socialProfiles = [
         label: "Github"
     },
     {
-        href: "https://www.linkedin.com/kh3reef",
+        href: "https://www.linkedin.com/in/mustafa-sayed-7b00203b4/",
         icon: faLinkedin,
         label: "Linkedin"
     },

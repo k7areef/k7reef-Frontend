@@ -28,11 +28,9 @@ function Skills() {
         ]
     })
     const skills = results[0].data;
-    const services = results[1].data;
+    // const services = results[1].data;
     const skillsLoading = results[0].isLoading;
-    const servicesLoading = results[1].isLoading;
-    console.log(skillsLoading ? "Skills Loading..." : skills ? skills.data : null);
-    console.log(servicesLoading ? "Services Loading..." : services ? services.data : null);
+    // const servicesLoading = results[1].isLoading;
 
     return (
         <Element>

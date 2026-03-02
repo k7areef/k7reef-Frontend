@@ -8,15 +8,16 @@ import ProjectCardSkeleton from "@components/projects/ProjectCardSkeleton";
 
 function Projects() {
 
+    const limit = 6;
+
     const { data: projects, isLoading } = useQuery({
         queryKey: [`projects`],
         queryFn: async () => GET_PROJECTS({
-            params: '?populate[thumbnail]=true&populate[screens][count]=true&populate[techs][populate][image]=true&limit=6'
+            params: `?populate[thumbnail]=true&populate[screens][count]=true&populate[techs][populate][image]=true&limit=${limit}`
         }),
         enabled: true,
         refetchOnWindowFocus: false
-    })
-    console.log(isLoading ? "Projects Loading..." : projects ? projects.data : null);
+    });
 
     return (
         <Element name="projects">
@@ -34,7 +35,7 @@ function Projects() {
                     <div className="projects-grid grid md:grid-cols-2 lg:grid-cols-3 gap-5">
                         {
                             isLoading ? (
-                                Array.from({ length: 3 }).map((_, index) => (<div
+                                Array.from({ length: limit }).map((_, index) => (<div
                                     className="card-wrapper"
                                     key={index}
                                     // AOS:
@@ -46,7 +47,7 @@ function Projects() {
                             ) : (!projects || projects?.data?.length === 0) ? (
                                 <p>No projects found!</p>
                             ) : (
-                                projects?.data?.slice(0, 6).map((project, index) => (<div
+                                projects?.data?.slice(0, limit).map((project, index) => (<div
                                     className="card-wrapper"
                                     key={project.id || index}
                                     // AOS:

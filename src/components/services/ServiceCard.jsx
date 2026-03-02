@@ -33,7 +33,7 @@ function ServiceCard({ service = {}, className }) {
             <p
                 title={service.description}
                 aria-label={service.description}
-                className="text-gray-500 font-medium"
+                className="text-grey-muted font-medium"
             >{service.description}</p>
         </div>
     )

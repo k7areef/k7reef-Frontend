@@ -40,7 +40,7 @@ function ProjectCard({ project = {} }) {
                     >
                         <h3 className="project-title font-semibold sm:hover:underline line-clamp-1">{project.title}</h3>
                     </Link>
-                    <p className="project-description line-clamp-2 text-gray-500 font-medium">{project.description}</p>
+                    <p className="project-description line-clamp-2 text-grey-muted font-medium">{project.description}</p>
                 </div>
                 {/* Card Foot */}
                 <div className="card-foot flex items-center justify-between">

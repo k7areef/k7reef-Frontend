@@ -12,7 +12,7 @@ function ServiceCard({ service = {}, className }) {
     return (
         <div
             aria-label={service.name}
-            className={`service-card bg-grey rounded-lg p-5${className ? " " + className : ""}`}
+            className={`service-card bg-grey rounded-lg p-5 transition-colors duration-300 ease-out border-2 border-transparent sm:hover:border-primary${className ? " " + className : ""}`}
         >
             <div className="header flex items-center gap-3 mb-3">
                 {/* <div className="service-icon-wrapper w-16 h-16">

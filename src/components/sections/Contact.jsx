@@ -92,7 +92,7 @@ function Contact() {
                                         <div className="fields-wrapper mb-3 space-y-3">
                                             {
                                                 fields.map(({ fieldType, ...field }, index) => {
-                                                    const sharedClassName = "w-full p-3 bg-[#141414] rounded-md placeholder:text-white/50 transition duration-200 ease-out border border-transparent focus:border-primary";
+                                                    const sharedClassName = "w-full p-3 bg-grey rounded-md placeholder:text-white/50 transition duration-200 ease-out border border-transparent focus:border-primary";
                                                     return (
                                                         <div
                                                             className="field-wrapper"

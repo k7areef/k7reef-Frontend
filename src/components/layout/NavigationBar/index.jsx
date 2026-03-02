@@ -37,7 +37,7 @@ function NavigationBar() {
                                         navigate('/')
                                         setMenuOpen(false)
                                     }}
-                                    activeStyle={{ backgroundColor: "#257700" }}
+                                    activeStyle={{ backgroundColor: "#8618e2" }}
                                     className={`font-medium text-lg block py-1.5 px-4 md:px-5 rounded-sm cursor-pointer transition duration-200`}
                                 >
                                     {link.label}

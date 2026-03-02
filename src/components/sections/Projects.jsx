@@ -43,7 +43,7 @@ function Projects() {
                                 >
                                     <ProjectCardSkeleton key={index} />
                                 </div>))
-                            ) : (!projects || !projects?.data) ? (
+                            ) : (!projects || projects?.data?.length === 0) ? (
                                 <p>No projects found!</p>
                             ) : (
                                 projects?.data?.slice(0, 6).map((project, index) => (<div

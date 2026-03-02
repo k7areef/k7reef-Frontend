@@ -54,7 +54,7 @@ function Skills() {
                                 >
                                     <SkillCardSkeleton key={index} />
                                 </div>))
-                            ) : (!skills || !skills?.data) ? (
+                            ) : (!skills || skills?.data?.length === 0) ? (
                                 <p>No skills found!</p>
                             ) : (
                                 skills?.data.map((skill, index) => ((<div

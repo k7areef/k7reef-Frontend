@@ -1,36 +1,20 @@
 import SectionHeader from "./common/SectionHeader";
 import { Element } from 'react-scroll';
-import { GET_SERVICES, GET_SKILLS } from "@utils/api";
-import { useQueries } from "@tanstack/react-query";
+import { GET_SKILLS } from "@utils/api";
+import { useQuery } from "@tanstack/react-query";
 import SkillCard from "@components/skills/SkillCard";
 import SkillCardSkeleton from "@components/skills/SkillCardSkeleton";
 
 function Skills() {
 
-    const results = useQueries({
-        queries: [
-            {
-                queryKey: [`skills`],
-                queryFn: async () => GET_SKILLS({
-                    params: '?populate[image]=true'
-                }),
-                enabled: true,
-                refetchOnWindowFocus: false
-            },
-            {
-                queryKey: [`services`],
-                queryFn: async () => GET_SERVICES({
-                    params: '?populate[image]=true'
-                }),
-                enabled: false,
-                refetchOnWindowFocus: false
-            }
-        ]
+    const { data: skills, isLoading } = useQuery({
+        queryKey: [`skills`],
+        queryFn: async () => GET_SKILLS({
+            params: '?populate[image]=true'
+        }),
+        enabled: true,
+        refetchOnWindowFocus: false
     })
-    const skills = results[0].data;
-    // const services = results[1].data;
-    const skillsLoading = results[0].isLoading;
-    // const servicesLoading = results[1].isLoading;
 
     return (
         <Element>
@@ -42,7 +26,7 @@ function Skills() {
                     />
                     <div className="skills-card grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
                         {
-                            skillsLoading ? (
+                            isLoading ? (
                                 Array.from({ length: 10 }).map((_, index) => (<div
                                     className="card-wrapper"
                                     key={index}

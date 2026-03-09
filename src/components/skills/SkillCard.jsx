@@ -15,7 +15,7 @@ function SkillCard({ skill = {} }) {
         <div className={`skill-card p-5 rounded-lg flex flex-col gap-3 items-center bg-grey transition-colors duration-300 ease-out border-2 ${skill.incoming ? "border-primary" : "border-transparent sm:hover:border-primary"} relative`}>
             {/* Incoming */}
             {
-                skill.incoming && <div className="incoming absolute py-1 px-2 text-xs left-2 top-2 bg-primary font-medium rounded-sm italic">
+                skill.incoming && <div className="incoming absolute z-1 py-1 px-2 text-xs left-2 top-2 bg-primary font-medium rounded-sm italic">
                     Incomin
                 </div>
             }

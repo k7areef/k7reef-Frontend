@@ -27,7 +27,7 @@ function Skills() {
                     <div className="skills-card grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
                         {
                             isLoading ? (
-                                Array.from({ length: 10 }).map((_, index) => (<div
+                                Array.from({ length: 20 }).map((_, index) => (<div
                                     className="card-wrapper"
                                     key={index}
                                     // AOS:

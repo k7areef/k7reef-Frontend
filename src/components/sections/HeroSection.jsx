@@ -6,12 +6,12 @@ import backgroundImage from '@assets/hero-section-bg.webp';
 
 const socialProfiles = [
     {
-        href: "https://www.facebook.com/kh3reef",
+        href: "https://www.facebook.com/k7areef",
         icon: faFacebook,
         label: "Facebook"
     },
     {
-        href: "https://www.github.com/kh3reef",
+        href: "https://www.github.com/k7areef",
         icon: faGithub,
         label: "Github"
     },

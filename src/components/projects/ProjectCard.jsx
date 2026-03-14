@@ -1,7 +1,6 @@
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
 
 /**
  * @typedef {Object} ProjectCardProps
@@ -14,11 +13,12 @@ import { Link } from "react-router-dom";
  */
 
 function ProjectCard({ project = {} }) {
-    const to = `/projects/${project.documentId}/${project.slug}`
+    const href = project.demo_url || project.github_repo;
     return (
         <div className="project-card overflow-hidden rounded-lg bg-grey" >
-            <Link
-                to={to}
+            <a
+                href={href}
+                target="_blank"
                 aria-label={project.title}
                 className="project-thumbnail aspect-video block group overflow-hidden relative before:absolute before:w-1/2 before:left-0 before:top-0 before:pointer-events-none before:bg-linear-to-r before:from-dark/80 before:to-transparent before:h-full before:z-1 before:opacity-0 before:-translate-x-4 before:transition before:duration-700 sm:hover:before:opacity-100 sm:hover:before:translate-x-0 after:absolute after:w-1/2 after:right-0 after:top-0 after:pointer-events-none after:bg-linear-to-l after:from-dark/80 after:to-transparent after:h-full after:z-1 after:opacity-0 after:translate-x-4 after:transition after:duration-700 sm:hover:after:opacity-100 sm:hover:after:translate-x-0"
             >
@@ -28,18 +28,19 @@ function ProjectCard({ project = {} }) {
                     aria-label={project.title}
                     className="w-full h-full object-cover sm:group-hover:scale-105 sm:group-hover:rotate-1 transition-transform duration-700 ease-out will-change-transform"
                 />
-            </Link>
+            </a>
             <div className="project-info p-5">
                 {/* Text Info */}
                 <div className="text-wrapper mb-3">
-                    <Link
-                        to={to}
+                    <a
+                        href={href}
+                        target="_blank"
                         title={project.title}
                         className="w-fit block mb-1"
                         aria-label={project.title}
                     >
                         <h3 className="project-title font-semibold sm:hover:underline line-clamp-1">{project.title}</h3>
-                    </Link>
+                    </a>
                     <p className="project-description line-clamp-2 text-grey-muted font-medium">{project.description}</p>
                 </div>
                 {/* Card Foot */}

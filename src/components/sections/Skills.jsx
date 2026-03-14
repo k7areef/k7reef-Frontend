@@ -4,14 +4,23 @@ import { GET_SKILLS } from "@utils/api";
 import { useQuery } from "@tanstack/react-query";
 import SkillCard from "@components/skills/SkillCard";
 import SkillCardSkeleton from "@components/skills/SkillCardSkeleton";
+import { supabase } from "@utils/supabaseClient";
+
+const fetchSkills = async () => {
+    const { data, error } = await supabase
+        .from('skills')
+        .select("*")
+
+    if (error) throw new Error(error.message)
+    return data
+};
+
 
 function Skills() {
 
     const { data: skills, isLoading } = useQuery({
         queryKey: [`skills`],
-        queryFn: async () => GET_SKILLS({
-            params: '?populate[image]=true'
-        }),
+        queryFn: fetchSkills,
         enabled: true,
         refetchOnWindowFocus: false
     })

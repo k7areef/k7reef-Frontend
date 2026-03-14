@@ -5,6 +5,19 @@ import { GET_PROJECTS } from "@utils/api";
 import { useQuery } from "@tanstack/react-query";
 import ProjectCard from "@components/projects/ProjectCard";
 import ProjectCardSkeleton from "@components/projects/ProjectCardSkeleton";
+import { supabase } from "@utils/supabaseClient";
+
+const fetchProjects = async () => {
+    const { data, error } = await supabase
+        .from('projects')
+        .select(`
+      *,
+      project-skills (skills (*))
+    `)
+
+    if (error) throw new Error(error.message)
+    return data
+};
 
 function Projects() {
 
@@ -12,9 +25,7 @@ function Projects() {
 
     const { data: projects, isLoading } = useQuery({
         queryKey: [`projects`],
-        queryFn: async () => GET_PROJECTS({
-            params: `?populate[thumbnail]=true&populate[screens][count]=true&populate[techs][populate][image]=true&limit=${limit}`
-        }),
+        queryFn: fetchProjects,
         enabled: true,
         refetchOnWindowFocus: false
     });

@@ -26,7 +26,7 @@ function SkillCard({ skill = {} }) {
                         <FontAwesomeIcon icon={faGithub} size="4x" />
                     ) : (
                         <img
-                            src={skill.image.url}
+                            src={skill.image_url}
                             alt={skill.name}
                             loading="lazy"
                             aria-label={skill.name}

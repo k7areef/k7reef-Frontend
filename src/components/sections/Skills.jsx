@@ -1,6 +1,5 @@
 import SectionHeader from "./common/SectionHeader";
 import { Element } from 'react-scroll';
-import { GET_SKILLS } from "@utils/api";
 import { useQuery } from "@tanstack/react-query";
 import SkillCard from "@components/skills/SkillCard";
 import SkillCardSkeleton from "@components/skills/SkillCardSkeleton";
@@ -48,7 +47,7 @@ function Skills() {
                             ) : (!skills || skills?.data?.length === 0) ? (
                                 <p>No skills found!</p>
                             ) : (
-                                skills?.data.map((skill, index) => ((<div
+                                skills?.map((skill, index) => ((<div
                                     className="card-wrapper"
                                     key={skill.id || index}
                                     // AOS:

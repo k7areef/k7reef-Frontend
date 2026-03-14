@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import SectionHeader from "./common/SectionHeader";
 import { Element } from 'react-scroll';
-import { GET_PROJECTS } from "@utils/api";
 import { useQuery } from "@tanstack/react-query";
 import ProjectCard from "@components/projects/ProjectCard";
 import ProjectCardSkeleton from "@components/projects/ProjectCardSkeleton";
@@ -12,7 +11,7 @@ const fetchProjects = async () => {
         .from('projects')
         .select(`
       *,
-      project-skills (skills (*))
+      techs: project-skills (skills (name,image_url))
     `)
 
     if (error) throw new Error(error.message)
@@ -58,7 +57,7 @@ function Projects() {
                             ) : (!projects || projects?.data?.length === 0) ? (
                                 <p>No projects found!</p>
                             ) : (
-                                projects?.data?.slice(0, limit).map((project, index) => (<div
+                                projects?.slice(0, limit).map((project, index) => (<div
                                     className="card-wrapper"
                                     key={project.id || index}
                                     // AOS:

@@ -2,16 +2,23 @@ import ServiceCard from "@components/services/ServiceCard";
 import SectionHeader from "./common/SectionHeader";
 import { Element } from 'react-scroll';
 import { useQuery } from "@tanstack/react-query";
-import { GET_SERVICES } from "@utils/api";
 import ServiceCardSkeleton from "@components/services/ServiceCardSkeleton";
+import { supabase } from "@utils/supabaseClient";
+
+const fetchServices = async () => {
+    const { data, error } = await supabase
+        .from('services')
+        .select("*")
+
+    if (error) throw new Error(error.message)
+    return data
+};
 
 function Services() {
 
     const { data: services, isLoading } = useQuery({
         queryKey: [`services`],
-        queryFn: async () => GET_SERVICES({
-            params: '?populate[image]=true'
-        }),
+        queryFn: fetchServices,
         enabled: true,
         refetchOnWindowFocus: false
     })
@@ -32,7 +39,7 @@ function Services() {
                                 <p>No services found!</p>
                             )
                                 : (
-                                    services?.data.map((service, index) => (<div
+                                    services?.map((service, index) => (<div
                                         className="card-wrapper"
                                         key={service.id || index}
                                         // AOS:

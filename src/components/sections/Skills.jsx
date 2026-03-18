@@ -3,24 +3,13 @@ import { Element } from 'react-scroll';
 import { useQuery } from "@tanstack/react-query";
 import SkillCard from "@components/skills/SkillCard";
 import SkillCardSkeleton from "@components/skills/SkillCardSkeleton";
-import { supabase } from "@utils/supabaseClient";
-
-const fetchSkills = async () => {
-    const { data, error } = await supabase
-        .from('skills')
-        .select("*")
-        .order('order')
-
-    if (error) throw new Error(error.message)
-    return data
-};
-
+import { GET_SKILLS } from "@utils/apis";
 
 function Skills() {
 
     const { data: skills, isLoading } = useQuery({
         queryKey: [`skills`],
-        queryFn: fetchSkills,
+        queryFn: () => GET_SKILLS().then(res => res.data),
         enabled: true,
         refetchOnWindowFocus: false
     })

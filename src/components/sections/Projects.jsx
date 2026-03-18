@@ -4,19 +4,7 @@ import { Element } from 'react-scroll';
 import { useQuery } from "@tanstack/react-query";
 import ProjectCard from "@components/projects/ProjectCard";
 import ProjectCardSkeleton from "@components/projects/ProjectCardSkeleton";
-import { supabase } from "@utils/supabaseClient";
-
-const fetchProjects = async () => {
-    const { data, error } = await supabase
-        .from('projects')
-        .select(`
-      *,
-      techs: project-skills (skills (name,image_url))
-    `)
-
-    if (error) throw new Error(error.message)
-    return data
-};
+import { GET_PROJECTS } from "@utils/apis";
 
 function Projects() {
 
@@ -24,7 +12,7 @@ function Projects() {
 
     const { data: projects, isLoading } = useQuery({
         queryKey: [`projects`],
-        queryFn: fetchProjects,
+        queryFn: () => GET_PROJECTS([1, 2, 4, 5, 6, 8]).then(res => res.data),
         enabled: true,
         refetchOnWindowFocus: false
     });

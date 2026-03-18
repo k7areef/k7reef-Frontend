@@ -3,22 +3,13 @@ import SectionHeader from "./common/SectionHeader";
 import { Element } from 'react-scroll';
 import { useQuery } from "@tanstack/react-query";
 import ServiceCardSkeleton from "@components/services/ServiceCardSkeleton";
-import { supabase } from "@utils/supabaseClient";
-
-const fetchServices = async () => {
-    const { data, error } = await supabase
-        .from('services')
-        .select("*")
-
-    if (error) throw new Error(error.message)
-    return data
-};
+import { GET_SERVICES } from "@utils/apis";
 
 function Services() {
 
     const { data: services, isLoading } = useQuery({
         queryKey: [`services`],
-        queryFn: fetchServices,
+        queryFn: () => GET_SERVICES().then(res => res.data),
         enabled: true,
         refetchOnWindowFocus: false
     })

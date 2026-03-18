@@ -9,6 +9,7 @@ const fetchSkills = async () => {
     const { data, error } = await supabase
         .from('skills')
         .select("*")
+        .order('order')
 
     if (error) throw new Error(error.message)
     return data

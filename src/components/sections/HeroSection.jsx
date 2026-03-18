@@ -1,5 +1,5 @@
 import React from 'react';
-import { faAnglesDown, faDiagramProject, faFileDownload } from '@fortawesome/free-solid-svg-icons';
+import { faAnglesDown, faDiagramProject, faFileDownload, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Element, Link } from 'react-scroll';
 import backgroundImage from '@assets/hero-section-bg.webp';
@@ -96,14 +96,16 @@ function HeroSection() {
                                     data-aos-delay="150"
                                 >
                                     <a
+                                        role='button'
                                         target="_blank"
                                         title="Download CV"
                                         aria-label="Download CV"
                                         rel="noopener noreferrer"
-                                        href='https://drive.google.com/file/d/14MmsPLv-v3xjvcx4Ez1iESzZZFDhSi1d/view?usp=sharing'
+                                        aria-disabled={isLoading}
+                                        href={appConfigData?.cv_url}
                                         className={`bg-white text-primary flex items-center justify-center gap-2 py-2 px-4 rounded-md cursor-pointer`}
                                     >
-                                        <FontAwesomeIcon icon={faFileDownload} />
+                                        <FontAwesomeIcon icon={isLoading ? faSpinner : faFileDownload} {...(isLoading ? { className: "animate-spin" } : {})} />
                                         <span>Download CV</span>
                                     </a>
                                 </div>

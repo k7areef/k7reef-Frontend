@@ -24,6 +24,7 @@ export const GET_SKILLS = async () => {
     const response = await supabase
         .from('skills')
         .select("*")
+        .order("order", { ascending: true })
     if (response.error) {
         throw new Error(response.error);
     }

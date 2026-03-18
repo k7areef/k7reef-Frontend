@@ -1,10 +1,12 @@
-import { faGithub, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import SectionHeader from "./common/SectionHeader";
 import { Element } from 'react-scroll';
-import { faArrowRight, faEnvelope, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ErrorMessage, Formik } from "formik";
 import * as Yup from "yup";
+import React from "react";
+import { GET_APP_CONFIG } from "@utils/apis";
+import { useQuery } from "@tanstack/react-query";
 
 const fields = [
     {
@@ -43,25 +45,31 @@ const validationSchema = Yup.object({
     email: Yup.string().email("Invalid email").required("Email is required"),
     message: Yup.string().required("Message is required"),
 })
-const contactInfo = [
-    {
-        href: "https://wa.link/f6j6vs",
-        icon: faWhatsapp,
-        label: "+201122124968"
-    },
-    {
-        href: "mailto:kh3reef@gmail.com",
-        icon: faEnvelope,
-        label: "kh3reef@gmail.com"
-    },
-    {
-        href: "https://github.com/kh3reef",
-        icon: faGithub,
-        label: "Github.kh3reef"
-    }
-];
 
 function Contact() {
+
+    const { data: appConfigData, isLoading } = useQuery({
+        queryKey: ['app_config'],
+        queryFn: () => GET_APP_CONFIG().then(res => res.data),
+        enabled: true,
+        refetchOnWindowFocus: false
+    });
+
+    const contactInfo = React.useMemo(() => {
+        if (isLoading || !appConfigData) return [];
+
+        const info = appConfigData?.contact_info || {};
+        const array = [];
+
+        for (const key in info) {
+            if (!Object.hasOwn(info, key)) continue;
+
+            const element = info[key];
+            array.push(element);
+        }
+        return array;
+    }, [isLoading, appConfigData]);
+
     return (
         <Element>
             <section className="contact-section py-5 md:py-10" id="contact">
@@ -153,12 +161,12 @@ function Contact() {
                                     data-aos-delay={index * 50}
                                 >
                                     <a
-                                        href={contact.href}
+                                        href={contact.value}
                                         target="_blank"
                                         key={index}
                                         className="contact-link flex items-center gap-2 text-lg font-medium p-5 rounded-lg bg-grey transition-colors duration-300 ease-out sm:hover:bg-primary group"
                                     >
-                                        <FontAwesomeIcon icon={contact.icon} />
+                                        <img src={contact.icon_url} alt={contact.label} />
                                         <span>{contact.label}</span>
                                         <FontAwesomeIcon icon={faArrowRight} className="ms-auto transition duration-300 ease-out sm:group-hover:translate-x-2" />
                                     </a>

@@ -1,28 +1,36 @@
-import { faFacebook, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import React from 'react';
 import { faAnglesDown, faDiagramProject, faFileDownload } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Element, Link } from 'react-scroll';
 import backgroundImage from '@assets/hero-section-bg.webp';
-
-const socialProfiles = [
-    {
-        href: "https://www.facebook.com/k7areef",
-        icon: faFacebook,
-        label: "Facebook"
-    },
-    {
-        href: "https://www.github.com/k7areef",
-        icon: faGithub,
-        label: "Github"
-    },
-    {
-        href: "https://www.linkedin.com/in/mustafa-sayed-7b00203b4/",
-        icon: faLinkedin,
-        label: "Linkedin"
-    },
-]
+import { useQuery } from '@tanstack/react-query';
+import { GET_APP_CONFIG } from '@utils/apis';
 
 function HeroSection() {
+
+    const { data: appConfigData, isLoading } = useQuery({
+        queryKey: ['app_config'],
+        queryFn: () => GET_APP_CONFIG().then(res => res.data),
+        enabled: true,
+        refetchOnWindowFocus: false
+    });
+
+    const socialProfiles = React.useMemo(() => {
+
+        if (isLoading || !appConfigData) return [];
+
+        const profiles = appConfigData?.social_profiles || {};
+        const array = [];
+
+        for (const key in profiles) {
+            if (!Object.hasOwn(profiles, key)) continue;
+
+            const element = profiles[key];
+            array.push(element);
+        }
+        return array;
+    }, [isLoading, appConfigData]);
+
     return (
         <Element name="home">
             <section className="hero-section h-screen flex items-center relative bg-black overflow-hidden" id="home">
@@ -113,13 +121,13 @@ function HeroSection() {
                                         <a
                                             href={profile.href}
                                             target="_blank"
-                                            title={`${profile.label} Profile`}
-                                            aria-label={`${profile.label} Profile`}
+                                            title={`${profile.name} Profile`}
+                                            aria-label={`${profile.name} Profile`}
                                             rel="noopener noreferrer"
-                                            className='profile-link text-2xl transition duration-300 ease-out sm:hover:text-primary'
+                                            className='profile-link'
                                         >
-                                            <FontAwesomeIcon icon={profile.icon} />
-                                            <span className='sr-only'>{profile.label}</span>
+                                            <img src={profile.icon_url} alt={profile.name} width={35} />
+                                            <span className='sr-only'>{profile.name}</span>
                                         </a>
                                     </div>))
                                 }

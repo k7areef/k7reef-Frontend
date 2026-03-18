@@ -1,5 +1,15 @@
 import { supabase } from "./supabaseClient";
 
+export const GET_APP_CONFIG = async () => {
+    const response = await supabase
+        .from('app_config')
+        .select("*")
+        .single()
+    if (response.error) {
+        throw new Error(response.error);
+    }
+    return response;
+};
 export const GET_PROJECTS = async (ids) => {
     const response = await supabase
         .from('projects')

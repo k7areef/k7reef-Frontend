@@ -1,10 +1,12 @@
 import React from 'react';
-import { faAnglesDown, faDiagramProject, faFileDownload, faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Element, Link } from 'react-scroll';
 import backgroundImage from '@assets/hero-section-bg.webp';
 import { useQuery } from '@tanstack/react-query';
 import { GET_APP_CONFIG } from '@utils/apis';
+import ProjectsIcon from "@assets/icons/diagram-project.svg";
+import SpinnerIcon from "@assets/icons/spinner-primary.svg";
+import DownloadIcon from "@assets/icons/file-arrow-down.svg";
+import AnglesDownIcon from "@assets/icons/angles-down.svg";
 
 function HeroSection() {
 
@@ -85,7 +87,7 @@ function HeroSection() {
                                         offset={-64}
                                         className={`bg-primary flex items-center justify-center gap-2 py-2 px-4 rounded-md cursor-pointer`}
                                     >
-                                        <FontAwesomeIcon icon={faDiagramProject} />
+                                        <img src={ProjectsIcon} alt="Projects Icon" />
                                         <span>My Projects</span>
                                     </Link>
                                 </div>
@@ -105,7 +107,13 @@ function HeroSection() {
                                         href={appConfigData?.cv_url}
                                         className={`bg-white text-primary flex items-center justify-center gap-2 py-2 px-4 rounded-md cursor-pointer`}
                                     >
-                                        <FontAwesomeIcon icon={isLoading ? faSpinner : faFileDownload} {...(isLoading ? { className: "animate-spin" } : {})} />
+                                        {
+                                            isLoading ? (
+                                                <img src={SpinnerIcon} alt="Spinner Icon" className='animate-spin' />
+                                            ) : (
+                                                <img src={DownloadIcon} alt="Download Icon" />
+                                            )
+                                        }
                                         <span>Download CV</span>
                                     </a>
                                 </div>
@@ -145,7 +153,7 @@ function HeroSection() {
                     offset={-64}
                     className='cursor-pointer text-xl absolute z-2 left-1/2 -translate-x-1/2 bottom-15 flex items-center justify-center w-10 h-18 rounded-full border-2 border-white transiiton duration-300 ease-out will-change-auto sm:hover:border-primary sm:hover:text-primary'
                 >
-                    <FontAwesomeIcon icon={faAnglesDown} className='animate-bounce' />
+                    <img src={AnglesDownIcon} alt="Angles Down Icon" className='animate-bounce' />
                 </Link>
             </section>
         </Element>

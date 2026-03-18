@@ -1,12 +1,12 @@
 import SectionHeader from "./common/SectionHeader";
 import { Element } from 'react-scroll';
-import { faArrowRight, faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { ErrorMessage, Formik } from "formik";
 import * as Yup from "yup";
 import React from "react";
 import { GET_APP_CONFIG } from "@utils/apis";
 import { useQuery } from "@tanstack/react-query";
+import SpinnerIcon from "@assets/icons/spinner-white.svg";
+import ArrowRightIcon from "@assets/icons/arrow-right.svg";
 
 const fields = [
     {
@@ -139,12 +139,12 @@ function Contact() {
                                             disabled={isSubmitting}
                                             title="Send Your Message"
                                             aria-label="Send Your Message"
-                                            className="bg-primary p-4 rounded-md w-full font-medium"
+                                            className="bg-primary p-4 rounded-md w-full font-medium flex items-center justify-center"
                                             // AOS:
                                             data-aos="fade"
                                             data-aos-delay="300"
                                         >
-                                            <FontAwesomeIcon icon={faSpinner} className={`animate-spin transition-all duration-300 ease-out grid ${isSubmitting ? "grid-cols-[1fr] grid-rows-[1fr] me-2 opacity-100" : "grid-cols-[0fr] grid-rows-[0fr] opacity-0"}`} />
+                                            <img src={SpinnerIcon} alt="Spinner Icon" className={`animate-spin transition-all duration-300 ease-out grid ${isSubmitting ? "grid-[1fr] grid-[1fr] me-2 opacity-100" : "grid-[0fr] grid-[0fr] opacity-0"}`} />
                                             <span>Send Your Message</span>
                                         </button>
                                     </form>
@@ -168,7 +168,7 @@ function Contact() {
                                     >
                                         <img src={contact.icon_url} alt={contact.label} />
                                         <span>{contact.label}</span>
-                                        <FontAwesomeIcon icon={faArrowRight} className="ms-auto transition duration-300 ease-out sm:group-hover:translate-x-2" />
+                                        <img src={ArrowRightIcon} alt="arrow" className="ms-auto transition duration-300 ease-out sm:group-hover:translate-x-2" />
                                     </a>
                                 </div>))
                             }

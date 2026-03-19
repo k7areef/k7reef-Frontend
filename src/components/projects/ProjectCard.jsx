@@ -1,12 +1,10 @@
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faGlobe } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 /**
  * @typedef {Object} ProjectCardProps
  * @prop {Object} project
  */
 
+import GithubIcon from "@assets/icons/github.svg";
+import GlobeIcon from "@assets/icons/globe.svg";
 
 /**
  * @param {ProjectCardProps} props
@@ -69,7 +67,7 @@ function ProjectCard({ project = {} }) {
                             aria-label="Github Repo"
                             className="flex items-center justify-center w-12 h-12 rounded-md text-2xl transition-colors duration-300 will-change-auto bg-skeleton"
                         >
-                            <FontAwesomeIcon icon={faGithub} />
+                            <img src={GithubIcon} alt="Github" />
                             <span className="sr-only">Github</span>
                         </a>
                         <a
@@ -79,7 +77,7 @@ function ProjectCard({ project = {} }) {
                             aria-label="Live Demo"
                             className="flex items-center justify-center w-12 h-12 rounded-md text-2xl transition-colors duration-300 will-change-auto bg-primary"
                         >
-                            <FontAwesomeIcon icon={faGlobe} />
+                            <img src={GlobeIcon} alt="Globe" />
                             <span className="sr-only">Live Demo</span>
                         </a>
                     </div>

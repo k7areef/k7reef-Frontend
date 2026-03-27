@@ -27,6 +27,7 @@ function NavigationBar() {
                         <div className="links flex md:items-center gap-1 max-md:flex-col">
                             {
                                 links.map((link, index) => (<Link
+                                    href="" // ! This to imporve SEO
                                     key={index}
                                     to={link.to}
                                     smooth={true}

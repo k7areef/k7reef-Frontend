@@ -1,6 +1,5 @@
 import React from 'react';
 import { Element, Link } from 'react-scroll';
-import backgroundImage from '@assets/hero-section-bg.webp';
 import { useQuery } from '@tanstack/react-query';
 import { GET_APP_CONFIG } from '@utils/apis';
 import ProjectsIcon from "@assets/icons/diagram-project.svg";
@@ -44,8 +43,9 @@ function HeroSection() {
                     className="background-image absolute left-0 top-0 w-full h-full pointer-events-none"
                 >
                     <img
-                        src={backgroundImage}
+                        src="/hero-section-bg.webp"
                         alt='Background Image'
+                        fetchPriority="high"
                         className='w-full h-full object-cover'
                     />
                 </div>

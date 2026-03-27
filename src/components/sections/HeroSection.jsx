@@ -81,6 +81,7 @@ function HeroSection() {
                                     data-aos-delay="200"
                                 >
                                     <Link
+                                        href='' // ! This to imporve SEO
                                         to={'projects'}
                                         smooth={true}
                                         duration={300}
@@ -147,6 +148,7 @@ function HeroSection() {
                 </div>
                 {/* Explore Button */}
                 <Link
+                    href='' // ! This to imporve SEO
                     to={'projects'}
                     smooth={true}
                     duration={300}

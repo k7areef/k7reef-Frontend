@@ -92,7 +92,6 @@ function Contact() {
                             >
                                 {({
                                     handleChange,
-                                    handleBlur,
                                     handleSubmit,
                                     isSubmitting
                                 }) => (
@@ -115,14 +114,12 @@ function Contact() {
                                                                         <input
                                                                             {...field}
                                                                             onChange={handleChange}
-                                                                            onBlur={handleBlur}
                                                                             className={`${sharedClassName}`}
                                                                         />
                                                                     ) : (
                                                                         <textarea
                                                                             {...field}
                                                                             onChange={handleChange}
-                                                                            onBlur={handleBlur}
                                                                             className={`${sharedClassName} resize-none h-40`}
                                                                         />
                                                                     )

@@ -120,7 +120,7 @@ function HeroSection() {
                                 </div>
                             </div>
                             {/* Social Profiles */}
-                            <div className="socila-profiles flex items-center gap-2 mt-5">
+                            <div className="socila-profiles flex items-center gap-1 mt-5">
                                 {
                                     socialProfiles.map((profile, index) => (<div
                                         key={index}
@@ -135,9 +135,9 @@ function HeroSection() {
                                             title={`${profile.name} Profile`}
                                             aria-label={`${profile.name} Profile`}
                                             rel="noopener noreferrer"
-                                            className='profile-link'
+                                            className='profile-link block p-1 sm:hover:scale-110 transition-transform will-change-transform'
                                         >
-                                            <img src={profile.icon_url} alt={profile.name} width={35} />
+                                            <img src={profile.icon_url} alt={profile.name} width={25} />
                                             <span className='sr-only'>{profile.name}</span>
                                         </a>
                                     </div>))

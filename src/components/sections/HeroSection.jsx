@@ -122,25 +122,33 @@ function HeroSection() {
                             {/* Social Profiles */}
                             <div className="socila-profiles flex items-center gap-1 mt-5">
                                 {
-                                    socialProfiles.map((profile, index) => (<div
-                                        key={index}
-                                        className='link-container'
-                                        // AOS:
-                                        data-aos="zoom-in"
-                                        data-aos-delay={(index * 50) + 500}
-                                    >
-                                        <a
-                                            href={profile.href}
-                                            target="_blank"
-                                            title={`${profile.name} Profile`}
-                                            aria-label={`${profile.name} Profile`}
-                                            rel="noopener noreferrer"
-                                            className='profile-link block p-1 sm:hover:scale-110 transition-transform will-change-transform'
+                                    isLoading ? (
+                                        Array.from({ length: 6 }).map((_, index) => (<div
+                                            key={index}
+                                            className='w-8.25 h-8.25 rounded-full bg-primary/30 animate-pulse'
+                                        />))
+                                    ) : (
+
+                                        socialProfiles.map((profile, index) => (<div
+                                            key={index}
+                                            className='link-container'
+                                            // AOS:
+                                            data-aos="zoom-in"
+                                            data-aos-delay={(index * 50)}
                                         >
-                                            <img src={profile.icon_url} alt={profile.name} width={25} />
-                                            <span className='sr-only'>{profile.name}</span>
-                                        </a>
-                                    </div>))
+                                            <a
+                                                href={profile.href}
+                                                target="_blank"
+                                                title={`${profile.name} Profile`}
+                                                aria-label={`${profile.name} Profile`}
+                                                rel="noopener noreferrer"
+                                                className='profile-link block p-1 sm:hover:scale-110 transition-transform will-change-transform'
+                                            >
+                                                <img src={profile.icon_url} alt={profile.name} width={25} />
+                                                <span className='sr-only'>{profile.name}</span>
+                                            </a>
+                                        </div>))
+                                    )
                                 }
                             </div>
                         </div>

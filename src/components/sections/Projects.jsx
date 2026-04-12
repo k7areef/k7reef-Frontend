@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import ProjectCard from "@components/projects/ProjectCard";
 import ProjectCardSkeleton from "@components/projects/ProjectCardSkeleton";
 import { GET_PROJECTS } from "@utils/apis";
+import ProjectsGrid from "@components/projects/ProjectsGrid";
 
 function Projects() {
 
@@ -30,33 +31,11 @@ function Projects() {
                             className="block w-fit py-2 px-4 rounded-md bg-primary"
                         >View All</Link>
                     </SectionHeader>
-                    <div className="projects-grid grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-                        {
-                            isLoading ? (
-                                Array.from({ length: limit }).map((_, index) => (<div
-                                    className="card-wrapper"
-                                    key={index}
-                                    // AOS:
-                                    data-aos="fade-up"
-                                    data-aos-delay={index * 100}
-                                >
-                                    <ProjectCardSkeleton key={index} />
-                                </div>))
-                            ) : (!projects || projects?.data?.length === 0) ? (
-                                <p>No projects found!</p>
-                            ) : (
-                                projects?.slice(0, limit).map((project, index) => (<div
-                                    className="card-wrapper"
-                                    key={project.id || index}
-                                    // AOS:
-                                    data-aos="fade-up"
-                                    data-aos-delay={index * 100}
-                                >
-                                    <ProjectCard project={project} />
-                                </div>))
-                            )
-                        }
-                    </div>
+                    <ProjectsGrid
+                        isLoading={isLoading}
+                        limit={limit}
+                        projects={projects}
+                    />
                 </div>
             </section>
         </Element>

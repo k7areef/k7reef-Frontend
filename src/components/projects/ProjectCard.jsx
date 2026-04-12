@@ -13,7 +13,7 @@ import GlobeIcon from "@assets/icons/globe.svg";
 function ProjectCard({ project = {} }) {
     const href = project.demo_url || project.github_repo;
     return (
-        <div className="project-card overflow-hidden rounded-lg bg-grey" >
+        <div className="project-card flex flex-col overflow-hidden rounded-lg bg-grey h-full" >
             <a
                 href={href}
                 target="_blank"
@@ -27,7 +27,7 @@ function ProjectCard({ project = {} }) {
                     className="w-full h-full object-cover sm:group-hover:scale-105 sm:group-hover:rotate-1 transition-transform duration-700 ease-out will-change-transform"
                 />
             </a>
-            <div className="project-info p-5">
+            <div className="project-info p-5 flex-1 flex flex-col">
                 {/* Text Info */}
                 <div className="text-wrapper mb-3">
                     <a
@@ -42,7 +42,7 @@ function ProjectCard({ project = {} }) {
                     <p className="project-description line-clamp-2 text-grey-muted font-medium">{project.description}</p>
                 </div>
                 {/* Card Foot */}
-                <div className="card-foot flex items-center justify-between">
+                <div className="card-foot flex items-center justify-between mt-auto">
                     {/* Techs */}
                     <div className="project-techs flex items-center gap-2">
                         {
